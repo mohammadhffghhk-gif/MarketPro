@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="fa" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><meta name="theme-color" content="#080615"><title>MarketPro Cyber Neon | KCEX Live</title>
+<script src="https://unpkg.com/lightweight-charts@4.2.2/dist/lightweight-charts.standalone.production.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap');
+:root{--bg:#080615;--panel:#100d22;--line:#29204b;--purple:#a855f7;--blue:#38bdf8;--text:#eeeaff;--muted:#9b91b9;--up:#20e3b2;--down:#ff477e}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 70% -20%,#30205b 0,transparent 48%),var(--bg);color:var(--text);font-family:Vazirmatn,Arial,sans-serif}.app{max-width:1300px;margin:auto;padding:14px 11px 26px}.top{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding:7px 2px 14px}.brand{display:flex;align-items:center;gap:11px}.logo{width:42px;height:42px;border-radius:13px;background:linear-gradient(135deg,#7c3aed,#0891b2);display:grid;place-items:center;font-size:23px;box-shadow:0 0 24px #9333ea55}.brand b{font-size:19px;letter-spacing:1px}.brand b span{color:#38bdf8}.brand small{display:block;color:var(--muted);font-size:10px}.status{font-size:11px;border:1px solid var(--line);padding:7px 10px;border-radius:20px;color:#c4b5fd}.status.ok{color:#8cf6d8;border-color:#176b59}.status.bad{color:#ffc1d0;border-color:#77324d}.panel{margin-top:14px;background:linear-gradient(145deg,#15102a,#0d0b1c);border:1px solid var(--line);border-radius:17px;padding:12px;box-shadow:0 15px 45px #0005}.toolbar{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-bottom:9px}.toolbar label{font-size:11px;color:var(--muted)}select,input,button{font:inherit;color:var(--text);background:#1a1531;border:1px solid #392b62;border-radius:9px;padding:8px 10px;font-size:12px;min-width:0}button{cursor:pointer}button:hover,select:focus{border-color:var(--blue)}button.active{background:linear-gradient(120deg,#6d28d9,#075985);border-color:#a855f7;box-shadow:0 0 14px #9333ea33}.toolbar select{max-width:170px}.tools{display:flex;flex-direction:column;gap:7px;padding:8px;border:1px solid var(--line);border-radius:12px;background:#0b0919;min-width:100px}.tools button{font-size:11px;white-space:nowrap}.chartrow{display:grid;grid-template-columns:104px minmax(0,1fr);gap:9px;direction:ltr}.chartwrap{position:relative;width:100%;height:590px;background:#090817;border:1px solid #282044;border-radius:12px;overflow:hidden;direction:ltr;min-width:0}.chart{position:absolute;inset:0}.drawlayer{position:absolute;inset:0;width:100%;height:100%;touch-action:pan-y;pointer-events:none}.drawlayer.drawing{touch-action:none;cursor:crosshair;pointer-events:auto}.legend{position:absolute;z-index:3;left:12px;top:9px;direction:ltr;font:12px Arial;color:#d8d0f5;pointer-events:none;text-shadow:0 1px 4px #000}.message{font-size:11px;line-height:1.9;color:#c4b5fd;background:#17112d;border:1px solid #493477;border-radius:10px;padding:9px 11px;margin-top:10px}.message.error{color:#ffc1d0;border-color:#77324d;background:#29101e}.message.success{color:#9ff6d9;border-color:#176b59;background:#0e241f}.bottom{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-top:9px;color:var(--muted);font-size:10px}.colors{display:flex;align-items:center;gap:6px;font-size:10px;color:var(--muted)}input[type=color]{width:33px;height:30px;padding:2px;border-radius:7px}.danger{border-color:#79334e}.foot{text-align:center;color:#71678d;font-size:10px;margin-top:14px}.pricebar{display:flex;gap:13px;align-items:center;flex-wrap:wrap;padding:5px 2px 10px;font-size:12px;direction:rtl}.price{font-size:19px;font-weight:800;color:#fff;direction:ltr}.muted{color:var(--muted)}.small{font-size:10px;color:var(--muted)}@media(max-width:650px){.app{padding:9px 6px 22px}.chartrow{grid-template-columns:76px minmax(0,1fr);gap:6px}.tools{min-width:0;padding:5px}.tools button{padding:8px 4px;font-size:10px}.chartwrap{height:510px}.panel{padding:8px}.toolbar{gap:5px}select,input,button{padding:7px 8px;font-size:11px}.status{font-size:9px}.price{font-size:16px}}@media(max-width:390px){.chartrow{grid-template-columns:67px minmax(0,1fr)}.tools button{font-size:9px}}
+</style></head><body><main class="app">
+<header class="top"><div class="brand"><div class="logo">⌁</div><div><b>MARKET<span>PRO</span></b><small>CYBER NEON · COINGECKO MARKET DATA</small></div></div><div class="status" id="status">● در انتظار اتصال</div></header>
+<section class="panel">
+<div class="toolbar"><label>منبع داده</label><select id="market"><option value="spot">CoinGecko</option></select><label>نماد</label><select id="coin"><option value="BTC" selected>BTC / USDT</option>
+<option value="ETH">ETH / USDT</option>
+<option value="SOL">SOL / USDT</option>
+<option value="BNB">BNB / USDT</option>
+<option value="XRP">XRP / USDT</option>
+<option value="DOGE">DOGE / USDT</option>
+<option value="ADA">ADA / USDT</option>
+<option value="LINK">LINK / USDT</option>
+<option value="AVAX">AVAX / USDT</option>
+<option value="TRX">TRX / USDT</option>
+<option value="TON">TON / USDT</option>
+<option value="DOT">DOT / USDT</option>
+<option value="LTC">LTC / USDT</option>
+<option value="BCH">BCH / USDT</option>
+<option value="ETC">ETC / USDT</option>
+<option value="ATOM">ATOM / USDT</option>
+<option value="NEAR">NEAR / USDT</option>
+<option value="APT">APT / USDT</option>
+<option value="ARB">ARB / USDT</option>
+<option value="OP">OP / USDT</option>
+<option value="SUI">SUI / USDT</option>
+<option value="SEI">SEI / USDT</option>
+<option value="TIA">TIA / USDT</option>
+<option value="INJ">INJ / USDT</option>
+<option value="FIL">FIL / USDT</option>
+<option value="ICP">ICP / USDT</option>
+<option value="UNI">UNI / USDT</option>
+<option value="AAVE">AAVE / USDT</option>
+<option value="CRV">CRV / USDT</option>
+<option value="PEPE">PEPE / USDT</option>
+<option value="SHIB">SHIB / USDT</option>
+<option value="WIF">WIF / USDT</option>
+<option value="FLOKI">FLOKI / USDT</option>
+<option value="BONK">BONK / USDT</option>
+<option value="NOT">NOT / USDT</option>
+<option value="HMSTR">HMSTR / USDT</option>
+<option value="WLD">WLD / USDT</option>
+<option value="JUP">JUP / USDT</option>
+<option value="ENA">ENA / USDT</option>
+<option value="ONDO">ONDO / USDT</option>
+<option value="RENDER">RENDER / USDT</option>
+<option value="FET">FET / USDT</option>
+<option value="TAO">TAO / USDT</option>
+<option value="GALA">GALA / USDT</option>
+<option value="SAND">SAND / USDT</option>
+<option value="MANA">MANA / USDT</option>
+<option value="AXS">AXS / USDT</option>
+<option value="IMX">IMX / USDT</option>
+<option value="MKR">MKR / USDT</option>
+<option value="PENDLE">PENDLE / USDT</option>
+<option value="RUNE">RUNE / USDT</option>
+<option value="KAS">KAS / USDT</option>
+<option value="XLM">XLM / USDT</option>
+<option value="HBAR">HBAR / USDT</option>
+<option value="VET">VET / USDT</option>
+<option value="ALGO">ALGO / USDT</option>
+<option value="EOS">EOS / USDT</option>
+<option value="FTM">FTM / USDT</option>
+<option value="POL">POL / USDT</option>
+<option value="EGLD">EGLD / USDT</option>
+<option value="QNT">QNT / USDT</option>
+<option value="ZEC">ZEC / USDT</option>
+<option value="DASH">DASH / USDT</option>
+<option value="DYDX">DYDX / USDT</option>
+<option value="CAKE">CAKE / USDT</option>
+<option value="COMP">COMP / USDT</option>
+<option value="SNX">SNX / USDT</option>
+<option value="1INCH">1INCH / USDT</option>
+<option value="GMT">GMT / USDT</option>
+<option value="CHZ">CHZ / USDT</option>
+<option value="MASK">MASK / USDT</option>
+<option value="ZRO">ZRO / USDT</option>
+<option value="EIGEN">EIGEN / USDT</option>
+<option value="USDC">USDC / USDT</option></select><label>جست‌وجو</label><input id="search" placeholder="نماد..." style="width:90px"><button id="reload">⟳ اتصال مجدد</button></div>
+<div class="toolbar" id="intervals"><label>بازه نمودار</label><button class="active" data-v="30m">۳۰ دقیقه</button><button data-v="4h">۴ ساعت</button><button data-v="4d">۴ روز</button></div>
+<div class="toolbar" style="margin-top:8px"><label>کلید رایگان CoinGecko</label><input id="apiKey" type="password" autocomplete="off" placeholder="کلید Demo API را اینجا وارد کن" style="flex:1;min-width:160px"><button id="saveKey">استفاده از کلید</button><button id="clearKey" class="danger">پاک‌کردن کلید</button></div><div class="pricebar"><span class="muted">قیمت آخرین کندل</span><span class="price" id="lastPrice">—</span><span id="lastTime" class="small">منتظر داده زنده</span></div>
+<div class="chartrow"><aside class="tools"><label>ابزار رسم</label><button class="tool active" data-tool="cursor">↖ انتخاب</button><button class="tool" data-tool="line">╱ خط روند</button><button class="tool" data-tool="hline">━ افقی</button><button class="tool" data-tool="rect">▱ مستطیل</button><button class="tool" data-tool="text">T متن</button><label class="colors">رنگ رسم</label><input type="color" id="drawColor" value="#a855f7"><button id="undo">↶ بازگشت</button><button id="clear" class="danger">حذف همه</button><button id="save">ذخیره</button></aside><div class="chartwrap"><div id="chart" class="chart"></div><canvas id="drawlayer" class="drawlayer"></canvas><div class="legend" id="legend">CoinGecko · Waiting for API key</div></div></div>
+<div class="toolbar" style="margin-top:10px"><div class="colors">کندل صعودی <input type="color" id="upColor" value="#20e3b2"></div><div class="colors">کندل نزولی <input type="color" id="downColor" value="#ff477e"></div><button id="applyColors">اعمال رنگ</button><button id="fit">نمایش همه</button></div>
+<div id="message" class="message">برای شروع، کلید Demo API کوین‌گکو را وارد کن.</div><div class="bottom"><span id="symbolinfo">BTC / USDT · Spot</span><span id="saveinfo">ترسیمات به‌صورت خودکار روی همین مرورگر ذخیره می‌شوند.</span></div>
+</section><div class="foot">MARKETPRO · CYBER NEON · COINGECKO DATA · DRAWINGS SAVED ON THIS DEVICE</div></main>
+<script>
+(()=>{
+const $=id=>document.getElementById(id);const chartEl=$('chart'),canvas=$('drawlayer'),ctx=canvas.getContext('2d');
+let chart,candle,volume,interval='30m',tool='cursor',drawings=[],draft=null,first=null,resizeObs=null,bars=[],refreshTimer=null,loading=false;
+const market=()=> $('coin').value.toLowerCase()+'_usdt';
+const coinIds={BTC:'bitcoin',ETH:'ethereum',SOL:'solana',BNB:'binancecoin',XRP:'ripple',DOGE:'dogecoin',ADA:'cardano',LINK:'chainlink',AVAX:'avalanche-2',TRX:'tron',TON:'the-open-network',DOT:'polkadot',LTC:'litecoin',BCH:'bitcoin-cash',ETC:'ethereum-classic',ATOM:'cosmos',NEAR:'near',APT:'aptos',ARB:'arbitrum',OP:'optimism',SUI:'sui',SEI:'sei',TIA:'celestia',INJ:'injective-protocol',FIL:'filecoin',ICP:'internet-computer',UNI:'uniswap',AAVE:'aave',CRV:'curve-dao-token',PEPE:'pepe',SHIB:'shiba-inu',WIF:'dogwifcoin',FLOKI:'floki',BONK:'bonk',NOT:'notcoin',HMSTR:'hamster-kombat',WLD:'worldcoin-wld',JUP:'jupiter-exchange-solana',ENA:'ethena',ONDO:'ondo-finance',RENDER:'render-token',FET:'artificial-superintelligence-alliance',TAO:'bittensor',GALA:'gala',SAND:'the-sandbox',MANA:'decentraland',AXS:'axie-infinity',IMX:'immutable-x',MKR:'maker',PENDLE:'pendle',RUNE:'thorchain',KAS:'kaspa',XLM:'stellar',HBAR:'hedera-hashgraph',VET:'vechain',ALGO:'algorand',EOS:'eos',FTM:'fantom',POL:'polygon-ecosystem-token',EGLD:'elrond',QNT:'quant-network',ZEC:'zcash',DASH:'dash',DYDX:'dydx',CAKE:'pancakeswap-token',COMP:'compound-governance-token',SNX:'havven','1INCH':'1inch',GMT:'stepn',CHZ:'chiliz',MASK:'mask-network',ZRO:'layerzero',EIGEN:'eigenlayer',USDC:'usd-coin'};
+const periodDays=()=>interval==='30m'?1:interval==='4h'?7:90;
+const getKey=()=>sessionStorage.getItem('marketpro_cg_demo_key')||'';
+const drawKey=()=>`marketpro_draw_v3_${market()}_${interval}`;
+const intervalButtons=['1min','5min','15min','30min','1hour','6hour','1day','7day','30day'];
+function msg(t,kind=''){ $('message').textContent=t;$('message').className='message'+(kind?' '+kind:'') }
+function status(t,kind=''){ $('status').textContent='● '+t;$('status').className='status'+(kind?' '+kind:'') }
+function setupChart(){
+ if(!window.LightweightCharts){msg('کتابخانه نمودار بارگذاری نشد؛ اینترنت را بررسی کن.','error');return}
+ chart=LightweightCharts.createChart(chartEl,{width:chartEl.clientWidth,height:chartEl.clientHeight,layout:{background:{color:'#090817'},textColor:'#b9afd6',fontFamily:'Vazirmatn,Arial'},grid:{vertLines:{color:'#211a39'},horzLines:{color:'#211a39'}},rightPriceScale:{borderColor:'#352950'},timeScale:{borderColor:'#352950',timeVisible:true,secondsVisible:false},crosshair:{vertLine:{color:'#8b5cf6',width:1,style:2},horzLine:{color:'#8b5cf6',width:1,style:2}}});
+ candle=chart.addCandlestickSeries({upColor:$('upColor').value,downColor:$('downColor').value,borderUpColor:$('upColor').value,borderDownColor:$('downColor').value,wickUpColor:$('upColor').value,wickDownColor:$('downColor').value});
+ volume=chart.addHistogramSeries({priceFormat:{type:'volume'},priceScaleId:'',scaleMargins:{top:.82,bottom:0}});
+ chart.timeScale().subscribeVisibleLogicalRangeChange(redraw);
+ chart.subscribeCrosshairMove(p=>{if(p&&p.seriesData&&p.seriesData.get(candle)){let d=p.seriesData.get(candle);$('legend').textContent=`O ${d.open}  H ${d.high}  L ${d.low}  C ${d.close}`}});
+ resizeObs=new ResizeObserver(()=>{chart.applyOptions({width:chartEl.clientWidth,height:chartEl.clientHeight});sizeCanvas();redraw()});resizeObs.observe(chartEl);sizeCanvas();
+}
+function sizeCanvas(){let r=canvas.getBoundingClientRect(),d=window.devicePixelRatio||1;canvas.width=Math.round(r.width*d);canvas.height=Math.round(r.height*d);ctx.setTransform(d,0,0,d,0,0);redraw()}
+function timeSec(t){if(typeof t==='number')return t;if(t&&typeof t==='object'&&'year'in t)return Math.floor(Date.UTC(t.year,t.month-1,t.day)/1000);return null}
+function xFor(t){let s=timeSec(t);return s==null?null:chart.timeScale().timeToCoordinate(s)}function yFor(p){return candle.priceToCoordinate(p)}
+function drawOne(d){ctx.save();ctx.strokeStyle=d.color;ctx.fillStyle=d.color;ctx.lineWidth=2;ctx.setLineDash(d.type==='hline'?[5,4]:[]);
+ if(d.type==='hline'){let y=yFor(d.p1);if(y!==null){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(canvas.clientWidth,y);ctx.stroke()}}
+ else {let x1=xFor(d.t1),y1=yFor(d.p1),x2=xFor(d.t2),y2=yFor(d.p2);if(x1!==null&&y1!==null&&x2!==null&&y2!==null){if(d.type==='line'){ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke()}else if(d.type==='rect'){ctx.globalAlpha=.14;ctx.fillRect(x1,y1,x2-x1,y2-y1);ctx.globalAlpha=1;ctx.strokeRect(x1,y1,x2-x1,y2-y1)}else if(d.type==='text'){ctx.font='bold 14px Vazirmatn';ctx.fillText(d.text||'یادداشت',x1,y1)}}}
+ ctx.restore()}
+function redraw(){if(!ctx||!chart)return;ctx.clearRect(0,0,canvas.clientWidth,canvas.clientHeight);drawings.forEach(drawOne);if(draft)drawOne(draft)}
+function saveDrawings(){try{localStorage.setItem(drawKey(),JSON.stringify(drawings));$('saveinfo').textContent=`ذخیره شد ✓ · ${drawings.length} ترسیم · ${$('coin').value}/${interval}`;}catch(e){msg('ذخیره مرورگر انجام نشد؛ فضای ذخیره‌سازی را بررسی کن.','error')}}
+function loadDrawings(){try{drawings=JSON.parse(localStorage.getItem(drawKey())||'[]');if(!Array.isArray(drawings))drawings=[]}catch(e){drawings=[]}redraw();$('saveinfo').textContent=`${drawings.length} ترسیم ذخیره‌شده برای ${$('coin').value}/${interval}`}
+function coords(e){let r=canvas.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;return {x:x/r.width,y:y/r.height,px:x,py:y,time:timeSec(chart.timeScale().coordinateToTime(x)),price:candle.coordinateToPrice(y)}}
+function addDraw(p){if(!p.time||p.price==null)return false;return true}
+canvas.addEventListener('pointerdown',e=>{if(tool==='cursor')return;let p=coords(e);if(!addDraw(p))return;canvas.setPointerCapture(e.pointerId);if(tool==='hline'){drawings.push({type:'hline',p1:p.price,color:$('drawColor').value});saveDrawings();redraw();return}if(tool==='text'){let t=prompt('متن برچسب را بنویس:');if(t){drawings.push({type:'text',t1:p.time,p1:p.price,t2:p.time,p2:p.price,text:t,color:$('drawColor').value});saveDrawings();redraw()}return}first=p;draft={type:tool,t1:p.time,p1:p.price,t2:p.time,p2:p.price,color:$('drawColor').value}});
+canvas.addEventListener('pointermove',e=>{if(!draft||!first)return;let p=coords(e);if(p.time&&p.price!=null){draft.t2=p.time;draft.p2=p.price;redraw()}});
+canvas.addEventListener('pointerup',()=>{if(draft){drawings.push(draft);draft=null;first=null;saveDrawings();redraw()}});canvas.addEventListener('pointercancel',()=>{draft=null;first=null;redraw()});
+async function fetchCandles(){
+ if(loading)return;const key=getKey();if(!key){status('کلید لازم است','bad');msg('کلید Demo API کوین‌گکو را در کادر بالا وارد کن و «استفاده از کلید» را بزن.','error');return}
+ const symbol=$('coin').value,id=coinIds[symbol];if(!id){msg('برای این نماد هنوز شناسه CoinGecko تعریف نشده است.','error');return}
+ loading=true;status('در حال دریافت داده…');msg('در حال دریافت کندل‌های '+symbol+' از CoinGecko…');
+ try{
+  const url=`https://api.coingecko.com/api/v3/coins/${encodeURIComponent(id)}/ohlc?vs_currency=usd&days=${periodDays()}`;
+  const response=await fetch(url,{headers:{accept:'application/json','x-cg-demo-api-key':key}});
+  if(!response.ok){let detail='';try{const j=await response.json();detail=j.error||j.status?.error_message||''}catch(_){};throw new Error(`CoinGecko HTTP ${response.status}${detail?' · '+detail:''}`)}
+  const data=await response.json();if(!Array.isArray(data)||!data.length)throw new Error('برای این نماد داده کندلی دریافت نشد.');
+  bars=data.map(a=>({time:Math.floor(Number(a[0])/1000),open:Number(a[1]),high:Number(a[2]),low:Number(a[3]),close:Number(a[4])})).filter(x=>Number.isFinite(x.time)&&[x.open,x.high,x.low,x.close].every(Number.isFinite)).sort((a,b)=>a.time-b.time);
+  if(!bars.length)throw new Error('داده دریافتی قابل تبدیل به کندل نبود.');
+  candle.setData(bars);volume.setData([]);chart.timeScale().fitContent();const last=bars[bars.length-1];$('lastPrice').textContent=last.close.toLocaleString('en-US',{maximumFractionDigits:8});$('lastTime').textContent='آخرین به‌روزرسانی · '+new Date(last.time*1000).toLocaleTimeString('fa-IR');$('symbolinfo').textContent=`${symbol}/USD · CoinGecko · ${bars.length} کندل`;$('legend').textContent=`COINGECKO · ${symbol}/USD`;
+  status('داده دریافت شد','ok');msg('کندل‌ها با موفقیت از CoinGecko دریافت شدند. ترسیمات روی همین دستگاه ذخیره می‌شوند.','success');redraw();
+ }catch(err){console.error(err);status('خطای دریافت','bad');msg('دریافت داده ناموفق بود: '+err.message+' · کلید و اتصال اینترنت را بررسی کن.','error')}
+ finally{loading=false}
+}
+function connect(){clearInterval(refreshTimer);fetchCandles();refreshTimer=setInterval(fetchCandles,10*60*1000)}
+function changeMarket(){bars=[];candle.setData([]);volume.setData([]);loadDrawings();connect()}
+$('intervals').addEventListener('click',e=>{let b=e.target.closest('[data-v]');if(!b)return;interval=b.dataset.v;$('intervals').querySelectorAll('button').forEach(x=>x.classList.toggle('active',x===b));changeMarket()});
+document.querySelectorAll('.tool').forEach(b=>b.onclick=()=>{tool=b.dataset.tool;document.querySelectorAll('.tool').forEach(x=>x.classList.toggle('active',x===b));canvas.classList.toggle('drawing',tool!=='cursor')});
+$('coin').addEventListener('change',changeMarket);$('reload').onclick=changeMarket;$('saveKey').onclick=()=>{let k=$('apiKey').value.trim();if(!k){msg('اول کلید Demo API را وارد کن.','error');return}sessionStorage.setItem('marketpro_cg_demo_key',k);$('apiKey').value='';msg('کلید فقط تا پایان نشست مرورگر روی همین دستگاه نگهداری شد.','success');connect()};$('clearKey').onclick=()=>{sessionStorage.removeItem('marketpro_cg_demo_key');$('apiKey').value='';clearInterval(refreshTimer);status('کلید پاک شد','bad');msg('کلید از نشست فعلی پاک شد.','success')};$('save').onclick=saveDrawings;$('undo').onclick=()=>{drawings.pop();saveDrawings();redraw()};$('clear').onclick=()=>{if(confirm('همه ترسیمات این نماد و تایم‌فریم پاک شود؟')){drawings=[];saveDrawings();redraw()}};$('fit').onclick=()=>chart&&chart.timeScale().fitContent();$('applyColors').onclick=()=>{if(candle)candle.applyOptions({upColor:$('upColor').value,downColor:$('downColor').value,borderUpColor:$('upColor').value,borderDownColor:$('downColor').value,wickUpColor:$('upColor').value,wickDownColor:$('downColor').value})};$('search').addEventListener('input',e=>{let q=e.target.value.toUpperCase();[...$('coin').options].forEach(o=>o.hidden=!!q&&!o.value.includes(q));if([...$('coin').options].some(o=>o.value===q)){$('coin').value=q;changeMarket()}});
+setupChart();loadDrawings();if(getKey())connect();else{status('منتظر کلید API','bad');msg('کلید Demo API کوین‌گکو را وارد کن و «استفاده از کلید» را بزن.')} 
+})();
+</script></body></html>
